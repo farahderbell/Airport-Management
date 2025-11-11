@@ -1,68 +1,70 @@
 # ✈️ AirportManagement
 
 ## 🧾 Project Overview
-**AirportManagement** is a **C# (.NET 8.0)** project designed to demonstrate key **Object-Oriented Programming (OOP)** principles using an airport management scenario.
+**AirportManagement** is a **C# (.NET 8.0)** project that demonstrates key **Object-Oriented Programming (OOP)** principles through a simplified airport management system.
 
-The project simulates the management of planes, flights, and passengers while illustrating:
+It simulates the management of **planes, flights, and passengers**, and highlights:
 - **Encapsulation**
 - **Inheritance**
 - **Polymorphism**
-- **Class relationships (associations)**
+- **Class Associations (Relationships)**
 
-It is composed of two main projects:
-- **AM.ApplicationCore** – Class Library containing the domain entities and business logic.  
-- **AM.UI.Console** – Console application used for testing and demonstrating functionality.
+This project is organized into two main components:
+- **AM.ApplicationCore** – Class Library containing domain entities and business logic.  
+- **AM.UI.Console** – Console application used to test and demonstrate the system.
 
 ---
 
-## 🧩 Main Concepts and Features
+## 🧩 Domain Entities
 
 ### ✈️ Plane
-- Attributes: `PlaneType`, `Capacity`, `ManufactureDate`
-- Relationships: One-to-many with `Flight`  
+- **Attributes:** `PlaneId`, `Capacity`, `ManufactureDate`, `PlaneType`
+- **Relationships:** One-to-many with `Flight`  
   → `ICollection<Flight> Flights`
 
 ### 🛫 Flight
-- Attributes: `FlightDate`, `Destination`, `Departure`, `EstimatedDuration`
-- Relationships:
+- **Attributes:** `FlightId`, `FlightDate`, `EffectiveArrival`, `EstimatedDuration`, `Departure`, `Destination`
+- **Relationships:**
   - Many-to-one with `Plane`
   - Many-to-many with `Passenger`
 
 ### 👤 Passenger (Base Class)
-- Attributes: `Id`, `FullName`, `Email`, etc.  
-- Methods:
+- **Attributes:** `Id`, `FirstName`, `LastName`, `EmailAddress`, `BirthDate`, `TelNumber`, `PassportNumber`
+- **Methods:**
   - `CheckProfile(...)` → Demonstrates **method overloading (polymorphism by signature)**  
   - `PassengerType()` → Demonstrates **method overriding (polymorphism by inheritance)**
 
 **Derived Classes:**
 - **Staff** – Inherits from `Passenger`
+  - Attributes: `EmploymentDate`, `Function`, `Salary`
 - **Traveller** – Inherits from `Passenger`
+  - Attributes: `HealthInformation`, `Nationality`
 
 ---
 
 ## 🧠 Object-Oriented Programming Concepts
 
 ### 🔒 Encapsulation
-All attributes are implemented as **properties** with getters and setters (`get; set;`), ensuring controlled access to class data.
+All class attributes are implemented as **auto-properties** (`get; set;`) to ensure proper access control.
 
 ### 🧬 Inheritance
-`Staff` and `Traveller` inherit from the base class `Passenger`, sharing common properties and behaviors.
+`Staff` and `Traveller` inherit from `Passenger`, allowing code reuse and specialization.
 
 ### 🎭 Polymorphism
-- **By Signature (Method Overloading):**
-  Multiple versions of `CheckProfile()` with different parameter lists.  
-- **By Inheritance (Method Overriding):**
-  Each subclass redefines `PassengerType()` to extend the parent’s behavior.
+- **By Signature (Overloading):**  
+  Multiple versions of `CheckProfile()` with different parameter lists.
+- **By Inheritance (Overriding):**  
+  `PassengerType()` is redefined in subclasses to extend the parent’s behavior.
 
 ### 🔗 Associations
-- `Plane` ↔ `Flight` (1–*)
-- `Flight` ↔ `Passenger` (*–*)
+- `Plane` ↔ `Flight` → (1–*)
+- `Flight` ↔ `Passenger` → (*–*)
 
 ---
 
 ## ⚙️ How to Run the Project
 
-### 🧰 Requirements
+### 🧰 Prerequisites
 - [.NET SDK 8.0](https://dotnet.microsoft.com/download)
 - Visual Studio 2022 or Visual Studio Code
 
